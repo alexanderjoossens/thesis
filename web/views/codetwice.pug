@@ -1,0 +1,17 @@
+html
+  head
+    script(src='/js/script.js' defer='')
+    link(rel='stylesheet' href='/stylesheet/style.css')
+
+    //- link(rel='stylesheet' href='https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.min.css')
+
+block content
+    script(src='/js/script.js' defer='')
+
+    header_code This code has already been used twice.
+    .pinfo(style='text-align:center') Please try again with another code.
+
+    form(action='/codetwice', method='POST')
+        .login_button
+            button(type='submit', id="codetwice_button",style="font-size:3vh;padding:2vh;text-align:center") Click here to try again
+    .loader

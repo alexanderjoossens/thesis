@@ -1,7 +1,7 @@
 import mysql from "mysql";
-import {afterDBcheck, renderuser1ready, rendervisual} from "./index.js"
-import { getCombinedRecTracks } from "./recommendation.js";
-export {db, globalVector2state, globalVector1, globalVector2, currentUser, currentCode, currentVector};
+import {renderVis2, algo1, algo2, afterDBcheck, getData, recommendationDoneTwo, renderuser1ready} from "./index.js"
+import {} from "./recommendationOne.js";
+export {pl1names, pl2names, curr_result, curr_pl1, curr_pl2, curr_code, db, globalVector2state, globalVector1, globalVector2, currentUser, currentCode, currentVector};
 
 const connection = mysql.createPool({
 	connectionLimit: 10,
@@ -18,7 +18,13 @@ let globalVector2state = 'empty';
 let currentUser = 1;
 var currentCode = "startDummyValue";
 var currentVector = 'startDummyValue';
-
+let curr_pl1 = []
+let curr_pl2 = []
+let curr_code = null
+let curr_result = null;
+let pl1names = []
+let pl2names = []
+let clickedCode = 'empty'
 
 
 export function printdb(req, res) {
@@ -176,6 +182,7 @@ export async function isCodeInDB(codeToCheck, updateDBPlaylistInfo=false) {
       // console.log('in insertTest')
       // insertTest('test1','test2');
       // console.log('out of insertTest')
+      globalVector2state = 'empty'
       return
     }
     // console.log('retreivedVectorData:',retreivedVectorData)
@@ -213,7 +220,15 @@ export async function insertVector2andRecSongDataB(codeToInsert, vectorToInsert,
   addSelectedTrackIdsToDB('b',codeToInsert, selected_track_ids)
   addSelectedArtistIdsToDB('b',codeToInsert, selected_artist_ids)
   insertRecSongDataToDB('b',codeToInsert,recommended_tracks,recommended_tracks_urls, recommended_tracks_names, recommended_tracks_artists)
-  setTimeout(rendervisual,2000)
+  if (codeToInsert[1] == 'y') {
+    setTimeout(algo1,2000)
+  }
+  else if (codeToInsert[1] == 'z') {
+    setTimeout(algo2,2000)
+  }
+  else {
+    console.log('code should never get here: code doesnt have y or z as 2nd symbol')
+  }
 }
 
 export async function addSelectedTrackIdsToDB(user, code, selected_track_ids) {
@@ -301,12 +316,82 @@ export async function insertRecSongDataToDB(user,code,recommended_tracks, recomm
     let query = db.query(sql,(err,result)=>{
       if (err) throw err;
     });
-  //   sql = `UPDATE spotify_table4 SET recSongsB='${recSongData}' WHERE code='${code}'`;
-  // }
-  // console.log('sql: ',sql)
-  // let query = db.query(sql,(err,result)=>{
-  //   if (err) throw err;
-  // });
   console.log('inserted RecSongData in DB')
   }
+}
+
+
+export async function getPlaylistNamesFromDB(currentCode) {
+  console.log('getting playlist names from DB...')
+  let sql_plnames = "SELECT sel_pl1, sel_pl2 FROM spotify_table4 WHERE code = "+db.escape(currentCode);
+  let query = db.query(sql_plnames,(err,retreivedData)=>{
+    curr_result = retreivedData;
+  });
+  curr_code = currentCode;
+  setTimeout(getPlaylistNamesFromDB2,1000)
+}
+
+export async function getPlaylistNamesFromDB2() {
+  curr_pl1 = []
+  curr_pl2 = []
+  let curr_result_1 = curr_result[0].sel_pl1
+  let curr_result_2 = curr_result[0].sel_pl2
+  curr_result_1 = curr_result_1.toString()
+  curr_result_2 = curr_result_2.toString()
+  curr_result_1 = curr_result_1.split(',')
+  curr_result_2 = curr_result_2.split(',')
+  console.log(curr_result_1)
+  console.log(curr_result_2)
+
+  for (var sel_pl1_itemid of curr_result_1) {
+    let curr_pl_item = await getData("/playlists/"+sel_pl1_itemid)
+    curr_pl1.push(curr_pl_item)
+  }
+  for (var sel_pl2_itemid of curr_result_2) {
+    let curr_pl_item = await getData("/playlists/"+sel_pl2_itemid)
+    curr_pl2.push(curr_pl_item)
+  }
+  setTimeout(getPlaylistNamesFromDB3,3000)
+}
+
+export async function getPlaylistNamesFromDB3() {
+    pl1names = []
+    pl2names = []
+    for (var curr_pl1_item of curr_pl1) {
+      pl1names.push(curr_pl1_item.name)
+    }
+    for (var curr_pl2_item of curr_pl2) {
+      pl2names.push(curr_pl2_item.name)
+    }
+    renderVis2()
+}
+
+export async function addPlButtonClickToDB(currentCode) {
+  // if currentCode is part of codeClicked, then code+clicked is already in DB
+  if (clickedCode.includes(currentCode)) {
+    // not the first time that addPlaylist button is clicked
+    // in that case, replace vector2 currentCode+'clicked' in DB
+    let sqlButtonClick1 = `UPDATE spotify_table4 SET vector2='clicked' WHERE code='${currentCode}'`;
+    try {
+      let queryButtonClick1 = db.query(sqlButtonClick1,(err,result)=>{
+      });
+    }
+    catch (err) {
+      console.log('error after addPlButtonClickToDB first time: ',err)
+    }
+
+  }
+  else {
+    // first time addPlaylist button is clicked
+    // replace vector1 with currentCode+'clicked' in DB
+    let sqlButtonClick2 = `UPDATE spotify_table4 SET vector1='clicked' WHERE code='${currentCode}'`;
+    try {
+      let queryButtonClick2 = db.query(sqlButtonClick2,(err,result)=>{
+      });
+    }
+    catch (err) {
+      console.log('error after addPlButtonClickToDB second time: ',err)
+    }
+  }
+  clickedCode = currentCode
 }

@@ -1,6 +1,9 @@
 extends layout.pug
     
 block content
+    form(action='/backfromplaylist', method='POST')
+        .back_button
+            button(type='submit', id="backfromplaylist",style="font-size:3vh;padding:2vh;text-align:center") Back to all playlists
     h1 Playlist #{name}
 
     table 
@@ -12,4 +15,5 @@ block content
 
           td #{artist_name}
           td #{track_name}
-          td: a(href=track_preview) Preview
+          if (track_preview != (undefined || null))
+            td: a(href=track_preview) Preview

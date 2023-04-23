@@ -1,43 +1,76 @@
-
 html
   link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD' crossorigin='anonymous')
 
   head
     style.
-
-      .header_homepage{
-        font-size:60px;
-        text-align: center;
+      .accordion-body{
+        margin-top:10px;
+        margin-bottom:0px;
       }
-      .header_visual2{
-        font-size:30px;
+      .example-layout{
+        margin-top:0px;
+      }
+      .header_homepage{
+        font-size:80px;
         text-align: center;
-        color:#FFA500;
+        margin-bottom:30px;
+      }
+      .header_vis1{
+        margin-top:5%;
+        display: block;
+        text-align: center;
+        color:black;
+        font-family: sans-serif;
+        font-size:100px;
+        width:100%;
+        margin-bottom: 200px;
+      }
+      .header_visual1{
+        font-size:50px;
+        text-align: center;
+        color:#E6E6FA;
       }
       #myProgressRed {
       width: 100%;
-      border-radius: 15px
-      background-color: #ddd;
+      border-radius: 15px 0 0 15px;
+      background-color: white;
       }
 
       #myProgressGreen {
       width: 100%;
-      border-radius: 15px
-      background-color: #ddd;
+      border-radius: 0px 15px 15px 0px;
+      background-color: white;
+      }
+      .titel{
+        font-size:20px;
+        padding-left:35vw;
       }
       .row {
+      margin-top:10px;
       display: flex;
       flex-grow: 1;
+      margin-bottom: -20px;
       }
-      .col-1 {
+      .col-bar-red {
       background: rgb(255, 255, 255);
       width: 23.5vw;
-      margin-left: 10px;
+      margin-left: 0px;
       }
-      .col-2 {
+      .col-bar-green {
+      background: rgb(255, 255, 255);
+      width: 23.5vw;
+      margin-left: -120px;
+      margin-right: -150px;
+      }
+      .col-person-red {
       background: rgb(255, 255, 255);
       width: 21.4vw;
-      margin-left: 10px;
+      margin-left: 200px;
+      }
+      .col-person-green {
+      background: rgb(255, 255, 255);
+      width: 21.4vw;
+      margin-right: 120px;
       }
       .col-half {
       background: rgb(255, 255, 255);
@@ -52,139 +85,1485 @@ html
         margin-bottom:30px;
         padding-right:0px;
       }
-      .redplaylistname{
-        margin-top:0vh;
-        margin-bottom:0vh;
-        padding-left:37vw;
-        float:right;
-      }
-      .greenplaylistname{
-        margin-top:0vh;
-        margin-bottom:0vh;
-        padding-left:10px;
-      }
-      .matching{
-        text-align:center;
-        font-weight: bold;
-      }
-      .titel{
+      .preview_button{
+        cursor:pointer;
+        background-color:#1DB954;
+        color:white;
+        border:none;
+        margin-bottom:-50px;
+        margin-top:-50px;
+        margin-left:20px;
+        margin-right:20px;
+        padding-top:8px;
+        padding-bottom:8px;
+        padding-left:20px;
+        padding-right:20px;
+        text-align: center;
+        border-radius:20px;
+        font-family: sans-serif;
         font-size:20px;
-        padding-left:35vw;
       }
-
+      .addplaylist_button{
+        cursor:pointer;
+        background-color:#1DB954;
+        color:white;
+        border:none;
+        padding: 15px;
+        font-size: 30px;
+        margin-left:60vw;
+        margin-top:-5vh;
+        text-align: center;
+        border-radius:20px;
+        font-family: sans-serif;
+        text-decoration: none;
+        outline: none;
+        transition: all 0.3s ease-in-out;
+      }
+      .characteristics {
+        text-align: center;
+        font-size: 18px;
+        font-family: sans-serif;
+      }
     //-link(rel='stylesheet' href='/stylesheet/style.css')
 
     //- link(rel='stylesheet' href='https://sp-bootstrap.global.ssl.fastly.net/8.0.0/sp-bootstrap.min.css')
 
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js' integrity='sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN' crossorigin='anonymous')
+  script(src='/js/scriptForAddPlaylist.js' defer='')
+
   body
-    .header_homepage Your new playlist is ready!
-    .header_visual2 THIS IS VISUAL 2!!!
-    span(style="") Dont forget to fill out
-    span(style="color:#FF0000; text-decoration: underline;")  this questionnaire
-    span(style="")  when you're ready!
-    p
-    p recommended tracks: #{rec_tracks}
-    p globalVector1: #{vector1}
-    p globalVector2: #{JSON.stringify(vector2)}
-    - var nameRed = "Tom"
-    - var nameGreen = "Alice"
-    - var redPercentage = 80;
-    - var greenPercentage = 70;
-    - var playlist_names_red = ['country', 'skrrrt', 'party big'];
-    - var playlist_names_green = ['summerplaylist', 'feel good music'];
-    - var selected_playlists_red = ['dsfasfsd','sdafdsfaa','ddfadsfsa'];
-    - var selected_playlists_green = ['qrewqer','rqerqrew','rqrewqq']
-    p playlist names red: #{playlist_names_red}
-    p playlist names green: #{playlist_names_green}
-    p selected playlists red: #{selected_playlists_red}
-    p selected playlists green: #{selected_playlists_green}
+    - var code = code
+    span(style="margin-bottom:20px;display: block;text-align: center;color:black;font-family: sans-serif;font-size:100px;width:100%;") Your new playlist is here!
+      span(class="p",style="font-size: 10px") #{code}
+    span(style="padding-left:5vw;font-size:20px") Don't forget to fill out 
+    a(href='https://www.google.com',style="font-size:20px;color:#FF0000; text-decoration: underline;") this questionnaire
+    span(style="font-size:20px")  when you're ready!
+      form(action='/addplaylist' method='POST')
+        button.addplaylist_button(type="submit", id="addplaylist") Add playlist to your Spotify account
+          .loader
+    p(style='margin-bottom:50px') 
+    - var nameRed = name_1
+    - var nameGreen = name_2
+    - var redPercentages = matches1
+    - var greenPercentages = matches2
+    - var mutualCharacteristics = top3characteristicsNamesTwo
+    - var t = rec_tracks
 
-    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js' integrity='sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN' crossorigin='anonymous')
-
-    each t of rec_tracks
+    
+    //- the accordion items are not written dynamically because pug doesn't support variables in other variable names
+    if (t[0] != (undefined || null) || t[0].name != null)
       #accordionExample.accordion
         .accordion-item
-          h2#headingOne.accordion-header
-            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
-              .titel(style="text-align:center") #{t.name} - #{t.artists[0].name}
+          h2#headingOnee.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseOnee' aria-expanded='false' aria-controls='collapseOnee')
+              .titel(style="text-align:center") #{t[0].name} - #{t[0].artists[0].name}
 
-          #collapseOne.accordion-collapse.collapse.show(aria-labelledby='headingOne' data-bs-parent='#accordionExample')
+          // add .show after .collapse to open by default
+          #collapseOnee.accordion-collapse.collapse(aria-labelledby='headingOnee' data-bs-parent='#accordionExample')
             .accordion-body
-              a(href=t.preview_url) Preview
+              if (t[0].preview_url != (undefined || null))
+                a.preview_button(href=t[0].preview_url) Preview
               .example-layout
                 .row
-                  .col-1
-                    img(src='/images/red_avatar.png' alt='flyer_img' style='display: block; margin-left:17vw; margin-right: auto; width:30%;')
-                    p(style="margin-left:19vw") #{nameRed}
-                  .col-1
-                    #myProgressRed
-                      #myBarRed(style="float:right;border-radius: 15px 0 0 15px;width:"+redPercentage+";direction:rtl;height: 30px;background-color: #E93D3D") 80%
-                  .col-1
-                    #myProgressGreen
-                      #myBarGreen(style="float:left;border-radius: 0 15px 15px 0;width:"+greenPercentage+";height: 30px;background-color: #5BE8A2;direction:rtl") 70%
-                  .col-1
-                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: 17vw; width:30%;')
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[0]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[0]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[0]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[0]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
                     .centerr
-                    p(style="text-align:center;margin-right:15vw;") #{nameGreen}
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
 
+    if (t[1] != (undefined || null) || t[1] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading2.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse1' aria-expanded='false' aria-controls='collapse1')
+              .titel(style="text-align:center") #{t[1].name} - #{t[1].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse1.accordion-collapse.collapse(aria-labelledby='heading1' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[1].preview_url != (undefined || null))
+                a.preview_button(href=t[1].preview_url) Preview
+              .example-layout
                 .row
-                p
-                  .naarboven(style="text-align:center") overall interest
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[1]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[1]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[1]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[1]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
 
+    if (t[2] != (undefined || null) || t[2] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading2.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse2' aria-expanded='false' aria-controls='collapse2')
+              .titel(style="text-align:center") #{t[2].name} - #{t[2].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse2.accordion-collapse.collapse(aria-labelledby='heading2' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[2].preview_url != (undefined || null))
+                a.preview_button(href=t[2].preview_url) Preview
+              .example-layout
                 .row
-                  p
-                  .col-half
-                    each playlist_name_red in playlist_names_red
-                      .row
-                        .col-2
-                        .col-2
-                          #myProgressRed
-                            #myBarRed(style="float:right;border-radius: 15px 0 0 15px;width:"+redPercentage+";direction:rtl;height: 30px;background-color: #E93D3D") 80%
-                        p
-                        .redplaylistname #{playlist_name_red}
-                        p
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[2]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[2]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[2]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[2]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
 
-                  .col-half
-                    each playlist_name_green in playlist_names_green
-                      .row
-                        .col-2
-                          #myProgressGreen
-                            #myBarGreen(style="float:left;border-radius: 0 15px 15px 0;width:"+greenPercentage+";height: 30px;background-color: #5BE8A2;direction:rtl") 70%
-                        .col-2
-                        p
-                      .greenplaylistname #{playlist_name_green}
-                      p
+    if (t[3] != (undefined || null) || t[3] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading3.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse3' aria-expanded='false' aria-controls='collapse3')
+              .titel(style="text-align:center") #{t[3].name} - #{t[3].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse3.accordion-collapse.collapse(aria-labelledby='heading3' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[3].preview_url != (undefined || null))
+                a.preview_button(href=t[3].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[3]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[3]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[3]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[3]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+    if (t[4] != (undefined || null) || t[4] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading4.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse4' aria-expanded='false' aria-controls='collapse4')
+              .titel(style="text-align:center") #{t[4].name} - #{t[4].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse4.accordion-collapse.collapse(aria-labelledby='heading4' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[4].preview_url != (undefined || null))
+                a.preview_button(href=t[4].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[4]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[4]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[4]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[4]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
 
 
-    //- #accordionExample.accordion
-    //-   .accordion-item
-    //-     h2#headingOne.accordion-header
-    //-       button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
-    //-         | Accordion Item #1
-    //-     #collapseOne.accordion-collapse.collapse.show(aria-labelledby='headingOne' data-bs-parent='#accordionExample')
-    //-       .accordion-body
-    //-         strong This is the first item's accordion body.
-    //-         |  It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the 
-    //-         code .accordion-body
-    //-         | , though the transition does limit overflow.
-    //-   .accordion-item
-    //-     h2#headingTwo.accordion-header
-    //-       button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo')
-    //-         | Accordion Item #2
-    //-     #collapseTwo.accordion-collapse.collapse(aria-labelledby='headingTwo' data-bs-parent='#accordionExample')
-    //-       .accordion-body
-    //-         strong This is the second item's accordion body.
-    //-         |  It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the 
-    //-         code .accordion-body
-    //-         | , though the transition does limit overflow.
-    //-   .accordion-item
-    //-     h2#headingThree.accordion-header
-    //-       button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapseThree' aria-expanded='false' aria-controls='collapseThree')
-    //-         | Accordion Item #3
-    //-     #collapseThree.accordion-collapse.collapse(aria-labelledby='headingThree' data-bs-parent='#accordionExample')
-    //-       .accordion-body
-    //-         strong This is the third item's accordion body.
-    //-         |  It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the 
-    //-         code .accordion-body
-    //-         | , though the transition does limit overflow.
+    if (t[5] != (undefined || null) || t[5] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading5.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse5' aria-expanded='false' aria-controls='collapse5')
+              .titel(style="text-align:center") #{t[5].name} - #{t[5].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse5.accordion-collapse.collapse(aria-labelledby='heading5' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[5].preview_url != (undefined || null))
+                a.preview_button(href=t[5].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[5]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[5]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[5]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[5]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[6] != (undefined || null) || t[6] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading6.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse6' aria-expanded='false' aria-controls='collapse6')
+              .titel(style="text-align:center") #{t[6].name} - #{t[6].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse6.accordion-collapse.collapse(aria-labelledby='heading6' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[6].preview_url != (undefined || null))
+                a.preview_button(href=t[6].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[6]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[6]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[6]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[6]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[7] != (undefined || null) || t[7] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading7.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse7' aria-expanded='false' aria-controls='collapse7')
+              .titel(style="text-align:center") #{t[7].name} - #{t[7].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse7.accordion-collapse.collapse(aria-labelledby='heading7' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[7].preview_url != (undefined || null))
+                a.preview_button(href=t[7].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[7]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[7]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[7]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[7]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[8] != (undefined || null) || t[8] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading8.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse8' aria-expanded='false' aria-controls='collapse8')
+              .titel(style="text-align:center") #{t[8].name} - #{t[8].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse8.accordion-collapse.collapse(aria-labelledby='heading8' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[8].preview_url != (undefined || null))
+                a.preview_button(href=t[8].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[8]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[8]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[8]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[8]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[9] != (undefined || null) || t[9] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading9.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse9' aria-expanded='false' aria-controls='collapse9')
+              .titel(style="text-align:center") #{t[9].name} - #{t[9].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse9.accordion-collapse.collapse(aria-labelledby='heading9' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[9].preview_url != (undefined || null))
+                a.preview_button(href=t[9].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[9]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[9]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[9]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[9]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[10] != (undefined || null) || t[10] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading10.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse10' aria-expanded='false' aria-controls='collapse10')
+              .titel(style="text-align:center") #{t[10].name} - #{t[10].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse10.accordion-collapse.collapse(aria-labelledby='heading10' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[10].preview_url != (undefined || null))
+                a.preview_button(href=t[10].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[10]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[10]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[10]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[10]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[11] != (undefined || null) || t[11] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading11.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse11' aria-expanded='false' aria-controls='collapse11')
+              .titel(style="text-align:center") #{t[11].name} - #{t[11].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse11.accordion-collapse.collapse(aria-labelledby='heading11' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[11].preview_url != (undefined || null))
+                a.preview_button(href=t[11].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[11]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[11]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[11]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[11]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[12] != (undefined || null) || t[12] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading12.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse12' aria-expanded='false' aria-controls='collapse12')
+              .titel(style="text-align:center") #{t[12].name} - #{t[12].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse12.accordion-collapse.collapse(aria-labelledby='heading12' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[12].preview_url != (undefined || null))
+                a.preview_button(href=t[12].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[12]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[12]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[12]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[12]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[13] != (undefined || null) || t[13] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading13.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse13' aria-expanded='false' aria-controls='collapse13')
+              .titel(style="text-align:center") #{t[13].name} - #{t[13].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse13.accordion-collapse.collapse(aria-labelledby='heading13' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[13].preview_url != (undefined || null))
+                a.preview_button(href=t[13].preview_url) Preview
+            .example-layout
+              .row
+                .col-person-red
+                  img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                  p(style="text-align:center") #{nameRed}
+                .col-bar-red
+                  #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[13]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                    p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[13]}%
+                  br
+                  script.
+                    var i = 0;
+                    function move() {
+                    if (i == 0) {
+                    i = 1;
+                    var elem = document.getElementById("myBarRed");
+                    var width = 1;
+                    var id = setInterval(frame, 10);
+                    function frame() {
+                    if (width >= 100) {
+                    clearInterval(id);
+                    i = 0;
+                    } else {
+                    width++;
+                    elem.style.width = width + "%";
+                    }
+                    }
+                    }
+                    }
+                .col-bar-green
+                  #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[13]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                    p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[13]}%
+                  br 
+                  script.
+                    var i = 0;
+                    function move() {
+                    if (i == 0) {
+                    i = 1;
+                    var elem = document.getElementById("myBarGreen");
+                    var width = 1;
+                    var id = setInterval(frame, 10);
+                    function frame() {
+                    if (width >= 100) {
+                    clearInterval(id);
+                    i = 0;
+                    } else {
+                    width++;
+                    elem.style.width = width + "%";
+                    }
+                    }
+                    }
+                    }
+                .col-person-green
+                  img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                  .centerr
+                  p(style="text-align:center") #{nameGreen}
+            .characteristics Matching your mutual interests: 
+              span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+    if (t[14] != (undefined || null) || t[14] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading14.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse14' aria-expanded='false' aria-controls='collapse14')
+              .titel(style="text-align:center") #{t[14].name} - #{t[14].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse14.accordion-collapse.collapse(aria-labelledby='heading14' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[14].preview_url != (undefined || null))
+                a.preview_button(href=t[14].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[14]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[14]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[14]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[14]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[15] != (undefined || null) || t[15] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading15.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse15' aria-expanded='false' aria-controls='collapse15')
+              .titel(style="text-align:center") #{t[15].name} - #{t[15].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse15.accordion-collapse.collapse(aria-labelledby='heading15' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[15].preview_url != (undefined || null))
+                a.preview_button(href=t[15].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[15]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[15]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[15]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[15]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[16] != (undefined || null) || t[16] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading16.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse16' aria-expanded='false' aria-controls='collapse16')
+              .titel(style="text-align:center") #{t[16].name} - #{t[16].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse16.accordion-collapse.collapse(aria-labelledby='heading16' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[16].preview_url != (undefined || null))
+                a.preview_button(href=t[16].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[16]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[16]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[16]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[16]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[17] != (undefined || null) || t[17] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading17.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse17' aria-expanded='false' aria-controls='collapse17')
+              .titel(style="text-align:center") #{t[17].name} - #{t[17].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse17.accordion-collapse.collapse(aria-labelledby='heading17' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[17].preview_url != (undefined || null))
+                a.preview_button(href=t[17].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[17]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[17]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[17]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[17]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[18] != (undefined || null) || t[18] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading18.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse18' aria-expanded='false' aria-controls='collapse18')
+              .titel(style="text-align:center") #{t[18].name} - #{t[18].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse18.accordion-collapse.collapse(aria-labelledby='heading18' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[18].preview_url != (undefined || null))
+                a.preview_button(href=t[18].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[18]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[18]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[18]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[18]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+
+    if (t[19] != (undefined || null) || t[19] != null)
+      #accordionExample.accordion
+        .accordion-item
+          h2#heading19.accordion-header
+            button.accordion-button(type='button' data-bs-toggle='collapse' data-bs-target='#collapse19' aria-expanded='false' aria-controls='collapse19')
+              .titel(style="text-align:center") #{t[19].name} - #{t[19].artists[0].name}
+
+          // add .show after .collapse to open by default
+          #collapse19.accordion-collapse.collapse(aria-labelledby='heading19' data-bs-parent='#accordionExample')
+            .accordion-body
+              if (t[19].preview_url != (undefined || null))
+                a.preview_button(href=t[19].preview_url) Preview
+              .example-layout
+                .row
+                  .col-person-red
+                    img(src='/images/purple_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    p(style="text-align:center") #{nameRed}
+                  .col-bar-red
+                    #myProgressRed(style="margin-top:30px;border-radius: 25px 0 0 25px;width:"+redPercentages[19]*2+";direction:rtl;height: 50px;background-color: #B956E3") 
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{redPercentages[19]}%
+                    br
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarRed");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-bar-green
+                    #myProgressGreen(style="margin-top:30px;border-radius: 0 25px 25px 0;width:"+greenPercentages[19]*2+";direction:rtl;height: 50px;background-color: #5BC18E")
+                      p(style="font-family: sans-serif;padding-right: 5px; padding-top: 8px; font-size:20px") #{greenPercentages[19]}%
+                    br 
+                    script.
+                      var i = 0;
+                      function move() {
+                      if (i == 0) {
+                      i = 1;
+                      var elem = document.getElementById("myBarGreen");
+                      var width = 1;
+                      var id = setInterval(frame, 10);
+                      function frame() {
+                      if (width >= 100) {
+                      clearInterval(id);
+                      i = 0;
+                      } else {
+                      width++;
+                      elem.style.width = width + "%";
+                      }
+                      }
+                      }
+                      }
+                  .col-person-green
+                    img(src='/images/green_avatar.png' alt='flyer_img' style='display: block; margin-left:auto; margin-right: auto; width:30%;')
+                    .centerr
+                    p(style="text-align:center") #{nameGreen}
+              .characteristics Matching your mutual interests: 
+                span(style="font-family: sans-serif;font-weight:bold;font-size:18px;text-align:center") #{mutualCharacteristics[0]}, #{mutualCharacteristics[1]}, #{mutualCharacteristics[2]}
+
+    p(style="padding:10vh;")
 

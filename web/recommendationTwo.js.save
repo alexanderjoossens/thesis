@@ -1,0 +1,344 @@
+import {vector_user_1, vector_user_2, recommendationDoneTwo, afterDBcheck, getData, renderuser1ready} from "./index.js"
+import {insertRecSongDataToDB, db, globalVector2state, globalVector1, globalVector2, currentUser, currentCode, currentVector} from './database_functionality.js'
+export {recommendationSongsTwo, finalTrackIdListTwo}
+
+
+let recTracksATwo = []
+let recTracksBTwo = []
+let recoSongIDsA = []
+let recoSongIDsB = []
+let nb_final_songsTwo = 20
+let combined_users_vectorTwo = []
+let combined_characteristicsTwo = []
+let top3ValuesTwo = []
+let top3characteristicsIndicesTwo = []
+let top3characteristicsNamesTwo = []
+let recTracksAcharacteristicsTwo = []
+let recTracksBcharacteristicsTwo = []
+let recommendationSongsTwo = []
+let finalTrackIdListTwo = []
+// deze 3 hieronder zelfs nodig? nee
+// let finalRecSongsNamesTwo = []
+// let finalRecSongsArtistsTwo = []
+// let finalRecSongsIDsTwo = []
+
+export async function getCombinedRecTracksTwo(code) {
+    // remove old lists
+    recTracksATwo = []
+    recTracksBTwo = []
+    recoSongIDsA = []
+    recoSongIDsB = []
+    combined_users_vectorTwo = []
+    combined_characteristicsTwo = []
+    top3ValuesTwo = []
+    top3characteristicsIndicesTwo = []
+    top3characteristicsNamesTwo = []
+    recTracksAcharacteristicsTwo = []
+    recTracksBcharacteristicsTwo = []
+    recommendationSongsTwo = []
+    finalTrackIdListTwo = []
+
+    // todo: first get both uservectors from database
+    // then combine these into 1 vector and save the most overlapping characteristics
+    // then get recommendedsongs from both users
+    // then get the most overlapping recommended songs based on the combined vector
+
+    // get top3 most similar characteristics
+    // put it in variables: top3Values,
+    //       top3characteristicsIndicesTwo and top3characteristicsNamesTwo
+    getTop3CharacteristicsTwo(vector_user_1, vector_user_2)
+
+    // not necessary?
+    // // generate combined_users_vectorTwo
+    // combineVectors(vector_user_1, vector_user_2)
+
+    // get recTracksA and recTracksB from Database
+    getRecTracksFromDBTwo('a',code)
+    getRecTracksFromDBTwo('b',code)
+
+    console.log('timeout of 3sec to go to getCombinedRecTracksTwo2')
+    setTimeout(getCombinedRecTracksTwo2, 3000)
+}
+
+
+function getCombinedRecTracksTwo2() {
+
+    console.log('recTracksATwo.length: ', Object.keys(recTracksATwo).length)
+    console.log('recTracksBTwo.length: ', Object.keys(recTracksBTwo).length)
+    console.log('niet erg als length niet hetzelfde is')
+
+    // get combined characteristics from recTracksA and recTracksB
+    // put it in variables recTracksAcharacteristicsTwo and recTracksBcharacteristicsTwo
+    getCharacteristicsFromRecTracksTwo()
+
+    console.log('timeout of 3sec to go to getCombinedRecTracksTwo3')
+    setTimeout(getCombinedRecTracksTwo3, 3000)
+}
+
+
+
+// gets the recommended songs for the users and their names and artist names
+async function getCombinedRecTracksTwo3() {
+    //console.log('recTracksACharacteristicsTwo: ', recTracksAcharacteristicsTwo)
+    //console.log('recTracksBCharacteristicsTwo: ', recTracksBcharacteristicsTwo)
+
+    getFinalRecSongsWithTop3CharacteristicsTwo(top3characteristicsIndicesTwo, top3ValuesTwo, recTracksAcharacteristicsTwo, recTracksBcharacteristicsTwo, 
+        recTracksAcharacteristicsTwo, recTracksBcharacteristicsTwo)
+
+    console.log('timeout of 3sec to go to recommendationDoneTwo')
+    setTimeout(recommendationDoneTwo, 3000);
+}
+
+// don't need this?
+// async function getCombinedRecTracksTwo4() {
+    
+//     for (var track of finalTrackIdList) {
+//         track = track.replaceAll('"','');
+//         let current_track = await getData("/tracks/"+track)
+//         recommendationSongsTwo.push(current_track)
+//         let current_track_name = current_track.name
+//         recommendationSongNames.push(current_track_name)
+//         //console.log('current_track', current_track)
+//         //console.log('current_track.artists', current_track.artists)
+//         if (current_track.artists == undefined) {
+//             continue;
+//         }
+//         let current_track_artist = current_track.artists[0].name
+//         recommendationArtistNames.push(current_track_artist)
+//         let current_track_artist_id = current_track.artists[0].id
+//         let current_track_name_artist = current_track_name + ' - ' + current_track_artist
+//     }
+//     console.log('recommendationSongsTwo: (n printen te lang)')
+//     console.log('recommendationSongNames: ', recommendationSongNames)
+//     console.log('recommendationArtistNames: ', recommendationArtistNames)
+//     console.log('timeout of 3sec to go to recommendationDoneTwo')
+//     setTimeout(recommendationDoneTwo, 3000);
+// }
+
+// gives back the average of the two vectors
+function combineVectors(v1, v2) {
+    if (v1.length != v2.length) {
+        console.log('vectors are not the same length')
+        return;
+    }
+    for (var i = 0; i < v1.length; i++) {
+        combined_users_vectorTwo.push((v1[i] + v2[i])/2)
+    }
+}
+
+// fill out recTracksATwo and recTracksBTwo
+export async function getRecTracksFromDBTwo(user, code) {
+    let sql3 = ""
+    if (user == 'a') {
+        sql3 = "SELECT recTracksA FROM spotify_table4 WHERE code = '"+code.toString()+"'";
+    }
+    else {
+        sql3 = "SELECT recTracksB FROM spotify_table4 WHERE code = '"+code.toString()+"'";
+    }
+    let regex = /\\/g;
+    let query = db.query(sql3,(err,retreivedData)=>{
+        if (err) throw err;
+        console.log('sql3: ',sql3)
+        //console.log('retreivedData: ', retreivedData)
+        //console.log('retreivedData type: ', typeof retreivedData)
+        //console.log('retreivedData[0].recTracksA: ',retreivedData[0].recTracksA);
+        // console.log('JSON.parse(retreivedData[0].recTracksA).replace(/\\/g, ""): ',JSON.parse(retreivedData[0].recTracksA.replace(/\\/g, "")));
+        // console.log('type: ',typeof retreivedData[0].recTracksA)
+        //let recoTracksA = JSON.parse(retreivedData[0].recTracksA.replace(/\\/g, ""));
+        if (user == 'a') {
+            recTracksATwo = JSON.parse(retreivedData[0].recTracksA);
+        }
+        else {
+            recTracksBTwo = JSON.parse(retreivedData[0].recTracksB);
+        }
+    });
+
+}
+
+// get the song characteristics of the two recommended track lists
+async function getCharacteristicsFromRecTracksTwo() {
+
+    let recTracksALengthTwo = Object.keys(recTracksATwo).length;
+    for (let i=0;i<recTracksALengthTwo;i++) {
+        recoSongIDsA.push(JSON.parse(recTracksATwo[i.toString()])["id"])
+    }
+    let recTracksBLengthTwo = Object.keys(recTracksBTwo).length;
+    for (let i=0;i<recTracksBLengthTwo;i++) {
+        recoSongIDsB.push(JSON.parse(recTracksBTwo[i.toString()])["id"])
+    }
+
+    recTracksAcharacteristicsTwo = []
+    recTracksBcharacteristicsTwo = []
+
+    for (var trackID of recoSongIDsA) {
+        var trackData = await getData("/audio-features/"+trackID)
+        // characteristics: acousticness, danceability, energy, loudness, mode, 
+        // speechiness, instrumentalness, liveness, tempo, duration_ms, time_signature
+        recTracksAcharacteristicsTwo.push
+            ([trackData.acousticness, trackData.danceability, trackData.energy,
+                trackData.loudness, trackData.mode, trackData.speechiness,
+                trackData.instrumentalness, trackData.liveness, trackData.tempo,
+                trackData.duration_ms, trackData.time_signature])
+    }
+    for (var trackID of recoSongIDsB) {
+        var trackData = await getData("/audio-features/"+trackID)
+        // characteristics: acousticness, danceability, energy, loudness, mode, 
+        // speechiness, instrumentalness, liveness, tempo, duration_ms, time_signature
+        recTracksBcharacteristicsTwo.push
+            ([trackData.acousticness, trackData.danceability, trackData.energy,
+                trackData.loudness, trackData.mode, trackData.speechiness,
+                trackData.instrumentalness, trackData.liveness, trackData.tempo,
+                trackData.duration_ms, trackData.time_signature])
+    }
+}
+
+// deze functie w nooit gebruikt mag weg
+// function combineCharacteristicsTwo(charcsA, charcsB) {
+//     for (var i = 0; i < charcsA.length; i++) {
+//         combined_characteristicsTwo.push((charcsA[i] + charcsB[i])/2)
+//     }
+//     console.log('combined_characteristicsTwo: ', combined_characteristicsTwo)
+// }
+
+function getTop3CharacteristicsTwo(v1, v2) {
+    if (v1.length != v2.length) {
+        console.log('user vectors are not the same length')
+        return
+    }
+    console.log('getting the top 3 characteristics of both user vectors...')
+    // put indices of the most similar 3 characteristics in top3characteristicsIndicesTwo
+    let vectorDifferences = []
+    //console.log('v1: ', v1)
+    //console.log('v1.length: ', v1.length)
+    for (var i = 0; i < v1.length; i++) {
+        let diff = Math.abs(v1[i] - v2[i])
+        vectorDifferences.push(diff)
+    }
+    //console.log('vectorDifferences: ', vectorDifferences)
+    for (var i = 0; i < 3; i++) {
+        let min = Math.min(...vectorDifferences)
+        let index = vectorDifferences.indexOf(min)
+        top3characteristicsIndicesTwo.push(index)
+        vectorDifferences[index] = 9999999
+    }
+    for (var i = 0; i < top3characteristicsIndicesTwo.length; i++) {
+        let average = (v1[top3characteristicsIndicesTwo[i]] + v2[top3characteristicsIndicesTwo[i]])/2
+        top3ValuesTwo.push(average)
+    }
+    //console.log('top3Values: ', top3ValuesTwo)
+    //console.log('top3characteristicsIndicesTwo: ', top3characteristicsIndicesTwo)
+    for (var j = 0; j < top3characteristicsIndicesTwo.length; j++) {
+        if (top3characteristicsIndicesTwo[j] == 0) {
+            top3characteristicsNamesTwo.push('acousticness')
+        }
+        else if (top3characteristicsIndicesTwo[j] == 1) {
+            top3characteristicsNamesTwo.push('danceability')
+        }
+        else if (top3characteristicsIndicesTwo[j] == 2) {
+            top3characteristicsNamesTwo.push('energy')
+        }
+        else if (top3characteristicsIndicesTwo[j] == 3) {
+            top3characteristicsNamesTwo.push('loudness')
+        }
+        else if (top3characteristicsIndicesTwo[j] == 4) {
+            top3characteristicsNamesTwo.push('mode')
+        }
+        else if (top3characteristicsIndicesTwo[j] == 5) {
+            top3characteristicsNamesTwo.push('speechiness')
+        }
+        else if (top3characteristicsIndicesTwo[j] == 6) {
+            top3characteristicsNamesTwo.push('instrumentalness')
+        }
+        else if (top3characteristicsIndicesTwo[j] == 7) {
+            top3characteristicsNamesTwo.push('liveness')
+        }
+        else if (top3characteristicsIndicesTwo[j] == 8) {
+            top3characteristicsNamesTwo.push('tempo')
+        }
+        else if (top3characteristicsIndicesTwo[j] == 9) {
+            top3characteristicsNamesTwo.push('duration_ms')
+        }
+        else if (top3characteristicsIndicesTwo[j] == 10) {
+            top3characteristicsNamesTwo.push('time_signature')
+        }
+    }
+    console.log('top3characteristicsNamesTwo: ', top3characteristicsNamesTwo)
+}
+
+// combine recTracksA and recTracksB with focus on the top 3 characteristics
+function getFinalRecSongsWithTop3CharacteristicsTwo(top3characteristicsIndicesTwo, top3ValuesTwo, recTracksACharacteristicsTwo, recTracksBCharacteristicsTwo) {
+    // select the songs where the top 3 characteristics are the closest to the top3ValuesTwo
+    let allDiffs = []
+    for (var i = 0; i < recTracksAcharacteristicsTwo.length; i++) {
+        // current_3 contains the values of the top 3 characteristics of the current song
+        let current_3 = []
+        for (var j = 0; j < 3; j++) {
+            //console.log('recTracksAcharacteristicsTwo[i]', recTracksAcharacteristicsTwo[i])
+            //console.log('recTracksAcharacteristicsTwo[i][top3characteristicsIndicesTwo[j]]', recTracksAcharacteristicsTwo[i][top3characteristicsIndicesTwo[j]])
+            current_3.push(recTracksAcharacteristicsTwo[i][top3characteristicsIndicesTwo[j]])
+        }
+        let diff = 0
+        for (var k = 0; k < 3; k++) {
+            diff += Math.abs(current_3[k] - top3ValuesTwo[k])
+        }
+        // allDiffs contains the differences between the top 3 characteristics of the current song and the top 3 goal values
+        allDiffs.push(diff)
+    }
+    for (var i = 0; i < recTracksBcharacteristicsTwo.length; i++) {
+        let current_3 = []
+        for (var j = 0; j < 3; j++) {
+            current_3.push(recTracksBcharacteristicsTwo[i][top3characteristicsIndicesTwo[j]])
+        }
+        let diff = 0
+        for (var k = 0; k < 3; k++) {
+            diff += Math.abs(current_3[k] - top3ValuesTwo[k])
+        }
+        allDiffs.push(diff)
+    }
+    //console.log('allDiffs: ', allDiffs)
+
+    // get indices from the smallest X diffs (X is nb_final_songsTwo)
+    let smallestDiffsIndices = []
+    for (var l = 0; l < nb_final_songsTwo; l++) {
+        let min = Math.min(...allDiffs)
+        let index = allDiffs.indexOf(min)
+        smallestDiffsIndices.push(index)
+        allDiffs[index] = 99999999
+    }
+    //console.log('smallestDiffsIndices: ', smallestDiffsIndices)
+
+    // finalRecSongsTwo are the songs with these smallest Diffs Indices
+    console.log('smallestDiffsIndices.length: ', smallestDiffsIndices.length)
+    for (var m = 0; m < smallestDiffsIndices.length; m++) {
+        let recTracksALength = Object.keys(recTracksATwo).length
+        console.log('recTracksALength: ', recTracksALength)
+        if (smallestDiffsIndices[m] < recTracksALength) {
+            console.log('recTracksATwo: ', recTracksATwo)
+            var song = Object.values(recTracksATwo)[smallestDiffsIndices[m]];
+            console.log('song: ', song)
+            song = JSON.parse(song)
+            recommendationSongsTwo.push(song)
+            finalTrackIdListTwo.push(song["id"])
+        //     finalRecSongsNamesTwo.push(recTracksA[smallestDiffsIndices[m]].name)
+        //     finalRecSongsArtistsTwo.push(recTracksA[smallestDiffsIndices[m]].artists[0].name)
+        }
+        else {
+            var song = Object.values(recTracksBTwo)[smallestDiffsIndices[m] - recTracksALength];
+           web_1         | SyntaxError: Unexpected token u in JSON at position 0
+
+	    console.log('song: ', song)
+            song = JSON.parse(song)
+            recommendationSongsTwo.push(song)
+            finalTrackIdListTwo.push(song["id"])
+        //     finalRecSongsArtistsTwo.push(recTracksB[smallestDiffsIndices[m] - recTracksA.length].artists[0].name)
+        //     finalRecSongsNamesTwo.push(recTracksB[smallestDiffsIndices[m] - recTracksA.length].name)
+        }
+    }
+    //console.log('recommendationSongsTwo: ', recommendationSongsTwo)
+    console.log('recommendationSongsTwo.length: ', recommendationSongsTwo.length)
+    console.log('finalTrackIdListTwo: ', finalTrackIdListTwo)
+    // console.log('finalRecSongsNamesTwo: ', finalRecSongsNamesTwo)
+    // console.log('finalRecSongsArtistsTwo: ', finalRecSongsArtistsTwo)
+}
+
+

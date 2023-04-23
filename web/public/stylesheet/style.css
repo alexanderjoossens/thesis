@@ -6,7 +6,7 @@ a{
   text-align: center;
 }
 
-ttt{
+playlist-selection-please{
   display: block;
   font-family: sans-serif;
   font-size: 20px;
@@ -76,6 +76,7 @@ header_visual2{
 
 header_user1ready{
   margin-top:5%;
+  margin-bottom: 5%;
   display: block;
   text-align: center;
   color:black;
@@ -83,6 +84,18 @@ header_user1ready{
   font-size:75px;
   width:100%;
 }
+
+.user1ready_button{
+  margin-top:2%;
+  margin-bottom:2%;
+  display: block;
+  text-align:center;
+  font-family: sans-serif;
+  width: 18%;
+  transition: all 0.3s ease-in-out;
+}
+
+
 
 header_code{
   margin-top:15%;
@@ -103,7 +116,7 @@ p_center{
 }
 
 p_user1ready{
-  font-size:15px;
+  font-size:20px;
   display:block;
   text-align: center;
   font-family: sans-serif;
@@ -120,8 +133,17 @@ p_user1ready{
   transition: all 0.3s ease-in-out;
 }
 
-.login_button:hover{
+/*.login_button:hover{
   transform: scale(1.1);
+}*/
+
+.back_button{
+  margin-top:2%;
+  margin-bottom:2%;
+  display: block;
+  font-family: sans-serif;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
 }
 
 .center_button{
@@ -259,7 +281,7 @@ pd {
   border-top-right-radius: 10px;
 }
 
-.column1-style {
+/*.column1-style {
   padding-left: 0 px;
 }
 
@@ -269,7 +291,7 @@ pd {
 
 .column3-style {
   padding-left: 400 px;
-}
+}*/
 
 .example-layout {
   display: flex;
@@ -283,7 +305,13 @@ pd {
   /* flex-grow: 1; */
   background: rgb(165, 2, 30);
 }
-  
+
+.row-3:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .col-1 {
   background: rgb(132, 228, 255);
   width: 500px;
@@ -296,6 +324,17 @@ pd {
   background: strawberry;
   width: 100px;
   /* order: -1; */
+}
+
+.col-3 {
+  float: left;
+  width: 10%;
+  padding: 10px;
+}
+.col-3-large {
+  float: left;
+  width: 80%;
+  padding: 10px;
 }
 
 #myBarRed {
@@ -376,3 +415,17 @@ pd {
 --#{$prefix}accordion-body-padding-y: #{$accordion-body-padding-y};
 --#{$prefix}accordion-active-color: #{$accordion-button-active-color};
 --#{$prefix}accordion-active-bg: #{$accordion-button-active-bg}; */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #ffffff;
+  padding: 10px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}

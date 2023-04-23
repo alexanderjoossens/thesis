@@ -13,12 +13,8 @@ window.addEventListener("load", () => {
         this.innerHTML = "Wait a moment...";
         this.style = "background: #f1f5f4; color: #333; pointer-events: none";
         setTimeout(() => {
-            this.innerHTML = "Almost ready...";
+            this.innerHTML ="Playlist added to your Spotify account!";
             this.style = "background: #f1f5f4; color: #333; pointer-events: none";
-        },3000);
-        setTimeout(() => {
-            this.innerHTML = "Loading results...";
-            this.style = "background: #f1f5f4; color: #333; pointer-events: none";
-        },6000);
+        },2000);
     }
 })

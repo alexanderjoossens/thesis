@@ -1,3 +1,4 @@
+þ
 version: "3.2"
 services:
   db:
@@ -8,8 +9,6 @@ services:
     restart: always
     ports:
       - "3307:3307"
-    networks:
-      - db
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: pma
@@ -21,9 +20,7 @@ services:
       PMA_ARBITRARY: 1
     restart: always
     ports:
-      - "8081:80"
-    networks:
-      - db
+      - 8081:80
   web:
     build: ./web
     environment:
@@ -36,8 +33,3 @@ services:
     depends_on:
       - db
     restart: on-failure
-    networks:
-      - db
-networks:
-  db:
-    driver: overlay
