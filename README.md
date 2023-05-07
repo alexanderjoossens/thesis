@@ -8,7 +8,7 @@ The webapplication uses nodejs(dockerized container) and mysql(dockerized contai
 # Pre-requisites
 None. Everything is included in the docker container.
 
-## Running the application
+# Running the application
 ```
 docker-compose up --build
 ```
