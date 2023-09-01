@@ -1,0 +1,19 @@
+data analyse
+
+first I wanted to do 20-way ANOVA on each question and see if algo/vis/both have influence and then conclude for this question this p-value is very low so algo has influence on accuracy,... or so
+
+BUT then I assume that each question matches with a construct (which i am not sure of)
+
+SOL: investigate this with CFA test --> gave bad results (questions aren't distinct enough per construct)
+
+SOL2: remove some questions with low factor est scores and redo CFA test --> gave bad results
+
+SOL3: do EFA test to get clusters of questions per construct (f) --> not all questions were present (q3 not) AND it gave bad results for 4 f's.
+
+SELF: I did it again and by removing some questions there are some clear clusters visibale (with correct rmsea and tli and csi values --> see chat)
+
+BUT: only for EFA the values were good (not for CLA) --> Do CLA again and removed questions until the values were good
+
+TODO: In report say I removed these questions ... because they actually measured something else (or at least a conflict)
+
+THEN SELF kept those questions from CFA and calculated average score per construct (e.g. construct accuracy = 0.2q1 +0.9q2) --> did 2way ANOVA with these constructs
